@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Character Selector</title>
+
+    <style>
+        body { font-family: 'Times New Roman', Times, serif, sans-serif; padding: 20px; }
+        #characterImg { margin-top: 15px; width: 300px; }
+    </style>
+</head>
+
+<body>
+<h2>Select a character</h2>
+
+<!-- Selection box -->
+<select id="characterSelect"></select>
+
+<!-- Image below -->
+<div>
+    <img id="characterImg" src="" alt="Character Image">
+</div>
+
+<script>
+    const characters = ["Garfield", "Odie", "Nermal", "Pooky", "John"];
+
+    const selectBox = document.getElementById("characterSelect");
+    const image = document.getElementById("characterImg");
+
+    characters.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        selectBox.appendChild(option);
+    });
+
+    function updateImage() {
+        const selected = selectBox.value;
+        image.src = `imgs/${selected}.jpg`;
+        image.alt = selected;
+    }
+
+    selectBox.addEventListener("change", updateImage);
+
+    selectBox.value = characters[0];
+    updateImage();
+</script>
+</body>
+</html>
